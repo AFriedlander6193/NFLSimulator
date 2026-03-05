@@ -1,0 +1,25 @@
+Package: NFLSimulator
+Title: What the Package Does (One Line, Title Case)
+Version: 0.1.0
+Authors@R: 
+    person("Aaron", "Friedlander", , "aaronfriedlandergradschool@gmail.com", role = c("aut", "cre"))
+Description: This package allows users to simulate NFL games.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports: 
+    dplyr,
+    rvest,
+    tidyr,
+    purrr,
+    nflreadr,
+    nnet,
+    brms,
+    MASS,
+    stringr,
+    rlist
+LazyData: true
+URL: https://github.com/AFriedlander6193/NFLSimulator
+BugReports: https://github.com/AFriedlander6193/NFLSimulator/issues
