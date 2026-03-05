@@ -34,6 +34,7 @@ age_joiner <- function(pff_data){
 #'    "SEA" "SF"  "TB"  "TEN" "WAS"
 #'@return A data frame representation of the depth chart with each players position
 #'
+#' @export
 depthchart <- function(tm){
   baseteamchart <- nflreadr::load_depth_charts() |>
     filter(team==tm & dt == dt[1]) |>
@@ -65,7 +66,7 @@ depthchart <- function(tm){
 #'    "coverage", "run_defense", "pass_rush"
 #'@return A data frame representation of the depth chart with each players position
 #'
-
+#' @export
 snaps_to_depth_chart <- function(team, def_assignment){
   dpt_cht <- depthchart(team)
   dpt_cht$cleaned_player <- clean_names(dpt_cht$player)
@@ -890,6 +891,7 @@ full_PFF <- function(team, year){
 
 # Simulator Functions -----------------------------------------------------
 
+#' @export
 choose_personnel <- function(posstm, down, togo, YdsBef, posstmdiff, quarter_secs, quarter){
   modeldat <- data.frame(
     possessionTeam = posstm,
@@ -905,6 +907,7 @@ choose_personnel <- function(posstm, down, togo, YdsBef, posstmdiff, quarter_sec
   sample(personnels, size = 1, prob = probs)
 }
 
+#' @export
 choose_def_personnel <- function(deftm, down, togo, YdsBef, posstmdiff, quarter_secs, quarter, personnel){
   modeldat <- data.frame(
     defensiveTeam = deftm,
@@ -921,6 +924,7 @@ choose_def_personnel <- function(deftm, down, togo, YdsBef, posstmdiff, quarter_
   sample(def_personnels, size = 1, prob = probs)
 }
 
+#' @export
 choose_formation <- function(posstm, down, togo, YdsBef, posstmdiff,
                              quarter_secs, quarter, personnel, def_personnel){
   modeldat <- data.frame(
@@ -939,6 +943,7 @@ choose_formation <- function(posstm, down, togo, YdsBef, posstmdiff,
   sample(formations, size = 1, prob = probs)
 }
 
+#' @export
 choose_def_coverage <- function(deftm, down, togo, YdsBef, posstmdiff, quarter_secs,
                                 quarter, personnel, def_personnel, formation){
   modeldat <- data.frame(
@@ -958,6 +963,7 @@ choose_def_coverage <- function(deftm, down, togo, YdsBef, posstmdiff, quarter_s
   sample(coverages, size = 1, prob = probs)
 }
 
+#' @export
 runorpass <- function(posstm, down, togo, YdsBef, posstmdiff, quarter_secs,
                       quarter, personnel, formation, def_personnel, coverage){
   modeldat <- data.frame(
@@ -982,6 +988,7 @@ runorpass <- function(posstm, down, togo, YdsBef, posstmdiff, quarter_secs,
 
 # Route Selection Function ------------------------------------------------
 
+#' @export
 routeselection <- function(posstm, deftm, down, togo, YdsBef, posstmdiff, quarter_secs, quarter,
                            off_dat, def_dat){
   whole_offense <- off_dat
@@ -1430,6 +1437,7 @@ saferouteselection <- function(posstm, deftm, down, togo, YdsBef, posstmdiff, qu
 
 # Yards Gained Function ---------------------------------------------------
 
+#' @export
 yardsgained <- function(posstm, deftm, down, togo, YdsBef, posstmdiff, quarter_secs, quarter,
                         off_dat, def_dat){
   output <- suppressWarnings(saferouteselection(posstm, deftm, down, togo,
@@ -1621,7 +1629,7 @@ safeyardsgained <- function(posstm, deftm, down, togo, YdsBef, posstmdiff, quart
   out$result
 }
 
-
+#' @export
 simulator <- function(team1, team2, year = 2025, track = "NO") {
   track <- track
   play <- list(yards = 0, runpass = "Run", result = "Default")
